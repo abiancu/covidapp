@@ -1,0 +1,30 @@
+{
+  "name": "covid19-tracker",
+  "version": "1.0.0",
+  "description": "simple COVID19 tracker application",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./app.js --exec babel-node -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abiancu/COVID19-tracker.git"
+  },
+  "author": "Alejandro Biancucci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abiancu/COVID19-tracker/issues"
+  },
+  "homepage": "https://github.com/abiancu/COVID19-tracker#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
