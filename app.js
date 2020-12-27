@@ -7,7 +7,7 @@ const app = express();
 const routes = express.Router();
 
 // Port number
-const PORT = 3000;
+const PORT = 8080;
 
 // Request Body Parsers
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, './views'));
 // Locals
 app.locals.pageTitle = 'COVID19-HOME';
 app.locals.covid_global = 'COVID-19 Global Cases';
+app.locals.footerContent = "© 2020 Copyright: Biancucci's Designed";
 
 // Add Middleware
 
