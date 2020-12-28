@@ -2,12 +2,13 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 
-// Using express
+// Using express express engine
 const app = express();
-const routes = express.Router();
+
+const route = require('./routes/home');
 
 // Port number
-const PORT = 8080;
+const PORT = 3000;
 
 // Request Body Parsers
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,14 +23,12 @@ app.locals.pageTitle = 'COVID19-HOME';
 app.locals.covid_global = 'COVID-19 Global Cases';
 app.locals.footerContent = "© 2020 Copyright: Biancucci's Designed";
 
-// Add Middleware
-
 // Serve static files
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.static(path.join(__dirname, '/static/img')));
 
 // Home page
-app.get('/', require('./routes/home'));
+app.use('/', route());
 
 // Listening
 app.listen(PORT, console.log(`Running on port: ${PORT}`));

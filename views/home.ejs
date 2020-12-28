@@ -27,13 +27,22 @@
       </div>
     </nav>
     <main>
+      <div class="div">
+        <div class="class">
+          <li id="new-confirmed">New Confirmed Cases: <%= newConfirmed %></li>
+          <li id="total-confirmed">
+            Total Confirmed Cases: <%= totalConfirmed %>
+          </li>
+          <li id="total-deaths">Total Deaths: <%= totalDeaths %></li>
+        </div>
+      </div>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Country</th>
+            <th scope="col">New Cases</th>
+            <th scope="col">Total Cases</th>
+            <th scope="col">Total Deaths</th>
           </tr>
         </thead>
         <tbody>
@@ -70,6 +79,4 @@
       </footer>
     </footer>
   </body>
-
-  <script></script>
 </html>
