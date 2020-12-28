@@ -15,7 +15,8 @@ const data = (address, callback) => {
       : callback(undefined, {
           newConfirmed: body.Global.NewConfirmed,
           totalConfirmed: body.Global.TotalConfirmed,
-          totalDeaths: body.Global.TotalDeaths
+          totalDeaths: body.Global.TotalDeaths,
+          countryInfo: body.Countries
         });
   });
 };
