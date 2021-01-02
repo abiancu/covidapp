@@ -7,12 +7,10 @@ const router = express.Router();
 module.exports = () => {
   router.get('/', (req, res, next) => {
     try {
-      const address = req.query.address;
       data(
-        address,
         (err, { newConfirmed, totalConfirmed, totalDeaths, countryInfo }) => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
-          console.log(countryInfo);
+          //console.log(countryInfo);
 
           // Check for errors
           if (err) {
