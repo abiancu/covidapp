@@ -1,4 +1,5 @@
 import express from 'express';
+import { calculateLimitAndOffset, paginate } from 'paginate-info';
 
 // Home route
 const data = require('../utils/covid-data');
@@ -10,7 +11,19 @@ module.exports = () => {
       data(
         (err, { newConfirmed, totalConfirmed, totalDeaths, countryInfo }) => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
-          //console.log(countryInfo);
+
+          // Paginate
+          const { currentPage, pageSize } = countryInfo;
+          const { limit, offset } = calculateLimitAndOffset(
+            currentPage,
+            pageSize
+          );
+          const count = countryInfo.length;
+          const paginatedData = countryInfo.slice(offset, offset + limit);
+          const paginationInfo = paginate(currentPage, count, paginatedData);
+
+          //console.log(paginatedData);
+          //console.log(paginationInfo);
 
           // Check for errors
           if (err) {
@@ -21,7 +34,9 @@ module.exports = () => {
               newConfirmed,
               totalConfirmed,
               totalDeaths,
-              countryInfo
+              countryInfo,
+              paginatedData,
+              paginationInfo
             });
           }
         }

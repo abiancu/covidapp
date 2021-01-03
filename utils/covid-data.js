@@ -8,6 +8,7 @@ const data = (callback) => {
   // api URL
   const url = constants.covidData.BASE_URL;
   //console.log(url);
+
   request({ url, json: true }, (err, { body }) => {
     //console.log(body);
 
