@@ -13,14 +13,8 @@ module.exports = () => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
 
           // Paginate
-          const { currentPage, pageSize } = countryInfo;
-          const { limit, offset } = calculateLimitAndOffset(
-            currentPage,
-            pageSize
-          );
           const count = countryInfo.length;
           const initResult = countryInfo.slice(currentPage, 10);
-          //const paginationInfo = paginate(currentPage, count, paginatedData);
 
           // Check for errors
           if (err) {
