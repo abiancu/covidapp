@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.static(path.join(__dirname, '/static/img')));
 
 // Home page
-app.use('/', route());
+app.use(route());
 
 // Listening
 app.listen(PORT, console.log(`Running on port: ${PORT}`));

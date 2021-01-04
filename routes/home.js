@@ -19,11 +19,8 @@ module.exports = () => {
             pageSize
           );
           const count = countryInfo.length;
-          const paginatedData = countryInfo.slice(offset, offset + limit);
-          const paginationInfo = paginate(currentPage, count, paginatedData);
-
-          //console.log(paginatedData);
-          //console.log(paginationInfo);
+          const initResult = countryInfo.slice(currentPage, 10);
+          //const paginationInfo = paginate(currentPage, count, paginatedData);
 
           // Check for errors
           if (err) {
@@ -34,9 +31,7 @@ module.exports = () => {
               newConfirmed,
               totalConfirmed,
               totalDeaths,
-              countryInfo,
-              paginatedData,
-              paginationInfo
+              initResult // <- loading the first 10 results
             });
           }
         }
