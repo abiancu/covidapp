@@ -13,8 +13,42 @@ module.exports = () => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
 
           // Paginate
+          const { currentPage, pageSize } = countryInfo;
+          const { limit, offset } = calculateLimitAndOffset(
+            currentPage,
+            pageSize
+          );
           const count = countryInfo.length;
-          const initResult = countryInfo.slice(currentPage, 10);
+          const paginatedData = countryInfo.slice(offset, offset + limit);
+          const paginationInfo = paginate(currentPage, count, paginatedData);
+
+          console.log(paginationInfo);
+
+          const page = paginationInfo.currentPage;
+
+          const startIndex = (page - 1) * limit;
+          const endIndex = page * limit;
+
+          // Load initial resutls (20 per page)
+          const initResult = countryInfo.slice(startIndex, endIndex);
+
+          // Store more results
+          const moreResults = {};
+
+          // Load next results
+          moreResults.next = {
+            page: page + 1,
+            limit: limit
+          };
+
+          // Load previous results
+          moreResults.previous = {
+            page: page - 1,
+            limit: limit
+          };
+
+          moreResults.results = initResult;
+          console.log(moreResults);
 
           // Check for errors
           if (err) {
