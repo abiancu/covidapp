@@ -1,5 +1,4 @@
 import express from 'express';
-import { calculateLimitAndOffset, paginate } from 'paginate-info';
 
 // Home route
 const data = require('../utils/covid-data');
@@ -12,43 +11,24 @@ module.exports = () => {
         (err, { newConfirmed, totalConfirmed, totalDeaths, countryInfo }) => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
 
-          // Paginate
-          const { currentPage, pageSize } = countryInfo;
-          const { limit, offset } = calculateLimitAndOffset(
-            currentPage,
-            pageSize
-          );
-          const count = countryInfo.length;
-          const paginatedData = countryInfo.slice(offset, offset + limit);
-          const paginationInfo = paginate(currentPage, count, paginatedData);
+          // Pagination
+          const firstPage = 1;
+          const limit = 10;
+          const startIndex = (firstPage - 1) * limit; //pages are  1 index while start index is zero based; so we need to subract one to get index[0]
+          const endIndex = firstPage * limit;
 
-          console.log(paginationInfo);
-
-          const page = paginationInfo.currentPage;
-
-          const startIndex = (page - 1) * limit;
-          const endIndex = page * limit;
-
-          // Load initial resutls (20 per page)
+          // Loading only few results
           const initResult = countryInfo.slice(startIndex, endIndex);
 
-          // Store more results
-          const moreResults = {};
+          // More results
+          const pageNumbers = [];
+          const totalResults = countryInfo.length;
 
-          // Load next results
-          moreResults.next = {
-            page: page + 1,
-            limit: limit
-          };
-
-          // Load previous results
-          moreResults.previous = {
-            page: page - 1,
-            limit: limit
-          };
-
-          moreResults.results = initResult;
-          console.log(moreResults);
+          // Determining how many pages based on the limit
+          for (var i = firstPage; i <= Math.ceil(totalResults / limit); i++) {
+            pageNumbers.push(i);
+          }
+          //console.log(pageNumbers);
 
           // Check for errors
           if (err) {
@@ -59,7 +39,8 @@ module.exports = () => {
               newConfirmed,
               totalConfirmed,
               totalDeaths,
-              initResult // <- loading the first 10 results
+              initResult, // <- loading the first 10 results
+              pageNumbers
             });
           }
         }
