@@ -7,12 +7,28 @@ const router = express.Router();
 module.exports = () => {
   router.get('/', (req, res, next) => {
     try {
-      const address = req.query.address;
       data(
-        address,
         (err, { newConfirmed, totalConfirmed, totalDeaths, countryInfo }) => {
           //console.log(newConfirmed, totalConfirmed, totalDeaths);
-          console.log(countryInfo);
+
+          // Pagination
+          const firstPage = 1;
+          const limit = 10;
+          const startIndex = (firstPage - 1) * limit; //pages are  1 index while start index is zero based; so we need to subract one to get index[0]
+          const endIndex = firstPage * limit;
+
+          // Loading only few results
+          const initResult = countryInfo.slice(startIndex, endIndex);
+
+          // More results
+          const pageNumbers = [];
+          const totalResults = countryInfo.length;
+
+          // Determining how many pages based on the limit
+          for (var i = firstPage; i <= Math.ceil(totalResults / limit); i++) {
+            pageNumbers.push(i);
+          }
+          //console.log(pageNumbers);
 
           // Check for errors
           if (err) {
@@ -23,7 +39,8 @@ module.exports = () => {
               newConfirmed,
               totalConfirmed,
               totalDeaths,
-              countryInfo
+              initResult, // <- loading the first 10 results
+              pageNumbers
             });
           }
         }

@@ -27,14 +27,21 @@
       </div>
     </nav>
     <main>
-      <div class="div">
-        <div class="class">
-          <li id="new-confirmed">New Confirmed Cases: <%= newConfirmed %></li>
-          <li id="total-confirmed">
+      <div>
+        <div class="page-item mt-4">
+          <ul id="new-confirmed">
+            New Confirmed Cases: <%= newConfirmed %>
+          </ul>
+          <ul id="total-confirmed">
             Total Confirmed Cases: <%= totalConfirmed %>
-          </li>
-          <li id="total-deaths">Total Deaths: <%= totalDeaths %></li>
+          </ul>
+          <ul id="total-deaths">
+            Total Deaths: <%= totalDeaths %>
+          </ul>
         </div>
+      </div>
+      <div>
+        <a href="#"><%= pageNumbers %> </a>
       </div>
       <table class="table">
         <thead>
@@ -46,7 +53,7 @@
           </tr>
         </thead>
         <tbody>
-          <% countryInfo.forEach(property => { %>
+          <% initResult.forEach((property) => { %>
           <tr>
             <th scope="row"><%= property.Country %></th>
             <td><%= property.NewConfirmed %></td>
