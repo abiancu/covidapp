@@ -40,9 +40,15 @@
           </ul>
         </div>
       </div>
-      <div>
-        <a href="#"><%= pageNumbers %> </a>
-      </div>
+      <nav class="navbar navbar-light bg-light">
+        <ul class="pagination">
+          <% pageNumbers.forEach(page => { %>
+          <li class="page-item">
+            <a href="#" class="page-link"> <%= page %> </a>
+          </li>
+          <% }) %>
+        </ul>
+      </nav>
       <table class="table">
         <thead>
           <tr>
