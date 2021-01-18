@@ -20,8 +20,8 @@ app.set('views', path.join(__dirname, './views'));
 
 // Locals
 app.locals.pageTitle = 'COVID19-HOME';
-app.locals.covid_global = 'COVID-19 Global Cases';
-app.locals.footerContent = "© 2020 Copyright: Biancucci's Designed";
+app.locals.covidGlobal = 'COVID-19 Global Cases';
+app.locals.footerContent = '© 2020 Copyright: Biancucci\'s Designed';
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '/static')));
