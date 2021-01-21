@@ -1,10 +1,9 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "prettier"],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
@@ -92,7 +91,7 @@
         "no-trailing-spaces": [
             "error",
             {
-                "skipBlankLines": false,
+                "skipBlankLines": true,
                 "ignoreComments": true
             }
         ],
@@ -101,8 +100,10 @@
         "object-curly-newline": [
             "error",
             {
-                "multiline": true,
-                "minProperties": 2
+                "ObjectExpression": "always",
+                "ObjectPattern": { "multiline": true },
+                "ImportDeclaration": "never",
+                "ExportDeclaration": { "multiline": true, "minProperties": 1 }
             }
         ],
         "one-var-declaration-per-line": ["error", "initializations"],
@@ -135,9 +136,5 @@
                 }
             }
         ]
-    },
-    "globals": {
-        "Express": true
-    },
-    "settings": { "import/core-modules": ["express"] }
+    }
 }

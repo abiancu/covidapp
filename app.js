@@ -11,7 +11,11 @@ const route = require('./routes/home');
 const PORT = 3000;
 
 // Request Body Parsers
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+);
 app.use(bodyParser.json());
 
 // View engine
@@ -21,7 +25,7 @@ app.set('views', path.join(__dirname, './views'));
 // Locals
 app.locals.pageTitle = 'COVID19-HOME';
 app.locals.covidGlobal = 'COVID-19 Global Cases';
-app.locals.footerContent = '© 2020 Copyright: Biancucci\'s Designed';
+app.locals.footerContent = '© 2020 Copyright: Alejandro BIancucci';
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '/static')));
