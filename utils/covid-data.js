@@ -16,9 +16,8 @@ const data = (callback) => {
             url,
             json: true
         },
-        (err, body) => {
-            // Console.log(body);
-
+        (err, {body}) => {
+            // console.log(body);
             err
                 ? callback('Error fetch data', undefined)
                 : callback(undefined, {
