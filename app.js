@@ -8,7 +8,7 @@ const app = express();
 const route = require('./routes/home');
 
 // Port number
-const PORT = 3000;
+const PORT = 8080;
 
 // Request Body Parsers
 app.use(
@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, './views'));
 // Locals
 app.locals.pageTitle = 'COVID19-HOME';
 app.locals.covidGlobal = 'COVID-19 Global Cases';
-app.locals.footerContent = '© 2020 Copyright: Alejandro BIancucci';
+app.locals.footerContent = '© 2020 Copyright: Biancucci\'s Designed';
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '/static')));
