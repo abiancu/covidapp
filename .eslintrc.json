@@ -135,6 +135,8 @@
                     "exceptions": ["*", "!"]
                 }
             }
-        ]
+        ], 
+        "padded-blocks": ["error", "never"]
+        
     }
 }

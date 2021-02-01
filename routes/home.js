@@ -14,7 +14,6 @@ module.exports = () => {
                     totalDeaths,
                     countryInfo
                 }) => {
- 
                     // Console.log(newConfirmed, totalConfirmed, totalDeaths);
 
                     // Pagination
@@ -22,11 +21,11 @@ module.exports = () => {
                     const limit = 10;
                     const startIndex = (firstPage - 1) * limit; // Pages are  1 index while start index is zero based; so we need to subract one to get index[0]
                     const endIndex = firstPage * limit;
-
+                    
                     // Loading only few results
                     const initResult = countryInfo.slice(startIndex, endIndex);
 
-                    // More results
+                    
                     const pageNumbers = [];
                     const totalResults = countryInfo.length;
 
@@ -34,7 +33,6 @@ module.exports = () => {
                     for (let i = firstPage; i <= Math.ceil(totalResults / limit); i++) {
                         pageNumbers.push(i);
                     }
-                    // Console.log(pageNumbers);
 
                     // Check for errors
                     if (err) {
@@ -46,7 +44,7 @@ module.exports = () => {
                         newConfirmed,
                         totalConfirmed,
                         totalDeaths,
-                        initResult, // <- loading the first 10 results
+                        initResult, // <- loading the first 10 results     
                         pageNumbers
                     });
                 }
@@ -54,6 +52,10 @@ module.exports = () => {
         } catch (error) {
             return next(error);
         }
+    });
+
+    router.get('/items', (req, res) => {
+        res.send('<h1>New page</h1>');
     });
 
     return router;
