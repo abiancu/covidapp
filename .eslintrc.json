@@ -136,7 +136,11 @@
                 }
             }
         ], 
-        "padded-blocks": ["error", "never"]
+        "padded-blocks": ["error", "never"],
+        "no-multiple-empty-lines": ["error", {
+            "max": 2,
+            "maxEOF": 1
+        }]
         
     }
 }
