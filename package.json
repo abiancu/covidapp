@@ -4,7 +4,7 @@
   "description": "simple COVID19 tracker application",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./app.js --exec babel-node -e js"
+    "start": "nodemon ./app.js --exec babel-node -e js, ejs"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0"
   }
 }
