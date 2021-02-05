@@ -17,11 +17,9 @@
             <%- include ('../partials/totals') %>
             <nav class="navbar navbar-light bg-light">
                 <ul class="pagination">
-                    <% pageNumbers.forEach(page => { %>
-                    <li class="page-item">
-                        <a href="#" class="page-link"> <%= page %> </a>
-                    </li>
-                    <% }) %>
+                   <% for( var i = 0; i < pages; i++ ) { %>
+                    <button type="button" class="page btn btn-sm btn-info" onclick="" ><%= i + 1  %> </button>
+                   <% } %>
                 </ul>
             </nav>
             <table class="table">
@@ -34,14 +32,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% initResult.forEach((property) => { %>
-                    <tr>
-                        <th scope="row"><%= property.Country %></th>
-                        <td><%= property.NewConfirmed %></td>
-                        <td><%= property.TotalConfirmed %></td>
-                        <td><%= property.TotalDeaths %></td>
-                    </tr>
-                    <% }); %>
+                    <% countries.forEach((d) => { %>
+                        <tr>
+                            <th scope="row"><%= d.Country %></th>
+                            <td><%= d.NewConfirmed %></td>
+                            <td><%= d.TotalConfirmed %></td>
+                            <td><%= d.TotalDeaths %></td>
+                        </tr>
+                        <% }); %>
                 </tbody>
             </table>
         </main>

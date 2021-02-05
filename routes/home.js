@@ -17,22 +17,28 @@ module.exports = () => {
                     // Console.log(newConfirmed, totalConfirmed, totalDeaths);
 
                     // Pagination
-                    const firstPage = 1;
-                    const limit = 10;
-                    const startIndex = (firstPage - 1) * limit; // Pages are  1 index while start index is zero based; so we need to subract one to get index[0]
-                    const endIndex = firstPage * limit;
-                    
-                    // Loading only few results
-                    const initResult = countryInfo.slice(startIndex, endIndex);
+                    let dataSet = {
+                        countries: countryInfo,
+                        page: 4,
+                        rows: 10
+                    };
 
-                    
-                    const pageNumbers = [];
-                    const totalResults = countryInfo.length;
+                    let pagination = (countries, page, rows) => {
+                        var startIndex = (page - 1) * rows;
+                        var endIndex = startIndex + rows;
 
-                    // Determining how many pages based on the limit
-                    for (let i = firstPage; i <= Math.ceil(totalResults / limit); i++) {
-                        pageNumbers.push(i);
-                    }
+                        var restuls = countryInfo.slice(startIndex, endIndex);
+
+                        var pages = Math.ceil(countries.length / rows);
+
+                        return {
+                            countries: restuls,
+                            pages: pages
+                        };
+                    };
+
+                    let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
+                    console.log(loadData);
 
                     // Check for errors
                     if (err) {
@@ -44,8 +50,8 @@ module.exports = () => {
                         newConfirmed,
                         totalConfirmed,
                         totalDeaths,
-                        initResult, // <- loading the first 10 results     
-                        pageNumbers
+                        countries: loadData.countries,
+                        pages: loadData.pages
                     });
                 }
             );
