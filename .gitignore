@@ -105,4 +105,7 @@ dist
 
 # REST clinet
 *.http
+
 .vscode/settings.json
+
+dist/
