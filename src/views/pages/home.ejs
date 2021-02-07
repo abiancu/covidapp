@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css"
+            rel="stylesheet"
+        />
+        <title><%= pageTitle %></title>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <%- include ('../partials/navigation') %>
+        <main>
+            <!-- Totals -->
+            <%- include ('../partials/totals') %>
+            <nav class="navbar navbar-light bg-light">
+                <ul class="pagination">
+                   <% for( var i = 0; i < pages; i++ ) { %>
+                    <button type="button" class="page btn btn-sm btn-info" onclick="" >
+                        <a href="/?page=<%= i + 1  %>"><%= i + 1  %></a>
+                    </button>
+                   <% } %>
+                </ul>
+            </nav>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Country</th>
+                        <th scope="col">New Cases</th>
+                        <th scope="col">Total Cases</th>
+                        <th scope="col">Total Deaths</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% countries.forEach((d) => { %>
+                        <tr>
+                            <th scope="row"><%= d.Country %></th>
+                            <td><%= d.NewConfirmed %></td>
+                            <td><%= d.TotalConfirmed %></td>
+                            <td><%= d.TotalDeaths %></td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </main>
+        <!-- Footer -->
+        <%- include ('../partials/footer') %>
+        <script src="src/app.js"></script>
+    </body>
+</html>
