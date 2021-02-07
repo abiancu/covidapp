@@ -15,11 +15,11 @@ module.exports = () => {
                     countryInfo
                 }) => {
                     // Console.log(newConfirmed, totalConfirmed, totalDeaths);
-
+                    console.log(req);
                     // Pagination
                     let dataSet = {
                         countries: countryInfo,
-                        page: 4,
+                        page: req.query ? (req.query.page ? req.query.page : 1) : 1,
                         rows: 10
                     };
 
@@ -38,7 +38,7 @@ module.exports = () => {
                     };
 
                     let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
-                    console.log(loadData);
+                    // console.log(loadData);
 
                     // Check for errors
                     if (err) {
