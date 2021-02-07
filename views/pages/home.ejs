@@ -18,7 +18,9 @@
             <nav class="navbar navbar-light bg-light">
                 <ul class="pagination">
                    <% for( var i = 0; i < pages; i++ ) { %>
-                    <button type="button" class="page btn btn-sm btn-info" onclick="" ><%= i + 1  %> </button>
+                    <button type="button" class="page btn btn-sm btn-info" onclick="" >
+                        <a href="/?page=<%= i + 1  %>"><%= i + 1  %></a>
+                    </button>
                    <% } %>
                 </ul>
             </nav>
