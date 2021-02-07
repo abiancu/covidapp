@@ -4,9 +4,9 @@
   "description": "simple COVID19 tracker application",
   "private": true,
   "scripts": {
-    "start": "nodemon ./app.js --exec @babel/node -e js, ejs",
-    "test": "eslint ./src/**/**.js",
-    "build": "webpack"
+    "build": "webpack --mode development",
+    "watch": "webpack --watch",
+    "start": "nodemon ./src/app.js --exec babel-node -e js, ejs"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,16 @@
     "@babel/node": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.14",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "copy-webpack-plugin": "^7.0.0",
+    "ejs-compiled-loader": "^3.0.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
+    "html-webpack-plugin": "^5.0.0",
     "webpack": "^5.21.1",
     "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-node-externals": "^2.5.2"
   }
 }

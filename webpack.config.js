@@ -1,6 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const CopyDirectory = require('copy-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
@@ -10,30 +9,30 @@ module.exports = {
     entry: ['@babel/polyfill', path.resolve(__dirname, 'src/app.js')],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'home.js'
+        filename: 'bundle.js'
     },
-    module:{
+    module: {
         rules: [
             {
                 test: /\.ejs$/,
-                use: ['ejs-loader'],
-                include: path.join(__dirname, 'src')
+                use: {
+                    loader: 'ejs-loader'
+                }
             },
             {
                 test: /\.js$/,
-                use: ['babel-loader']
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+
             }
         ]
     },
+    watch: true,
     plugins: [
-        new NodePolyfillPlugin(),
-        new CopyDirectory({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src'),
-                    to: path.resolve(__dirname, 'dist')
-                }
-            ]
-        })
+        new NodePolyfillPlugin()
     ]
 };

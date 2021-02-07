@@ -5,11 +5,10 @@ import bodyParser from 'body-parser';
 
 // Using express express engine
 const app = express();
-
 const route = require('./routes/home');
 
 // Port number
-const PORT = 8080;
+const PORT = process.env.POR || 8080;
 
 // Request Body Parsers
 app.use(
