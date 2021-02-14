@@ -14,7 +14,6 @@ module.exports = () => {
                     totalDeaths,
                     countryInfo
                 }) => {
-                    // Console.log(newConfirmed, totalConfirmed, totalDeaths);
                     console.log(req);
                     // Pagination
                     let dataSet = {
@@ -38,7 +37,7 @@ module.exports = () => {
                     };
 
                     let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
-                    // console.log(loadData);
+                    
 
                     // Check for errors
                     if (err) {
@@ -60,9 +59,7 @@ module.exports = () => {
         }
     });
 
-    router.get('/items', (req, res) => {
-        res.send('<h1>New page</h1>');
-    });
+    // Route for rendering data?
 
     return router;
 };
