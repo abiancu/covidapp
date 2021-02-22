@@ -9,12 +9,10 @@ module.exports = () => {
         try {
             data(
                 (err, {
-                    newConfirmed,
                     totalConfirmed,
                     totalDeaths,
                     countryInfo
                 }) => {
-                    console.log(req);
                     // Pagination
                     let dataSet = {
                         countries: countryInfo,
@@ -46,11 +44,11 @@ module.exports = () => {
 
                     return res.render('home', {
                         pageTitle: 'COVID-19 HOME',
-                        newConfirmed,
                         totalConfirmed,
                         totalDeaths,
                         countries: loadData.countries,
-                        pages: loadData.pages
+                        pages: loadData.pages,
+                        current: dataSet.page
                     });
                 }
             );
@@ -60,6 +58,7 @@ module.exports = () => {
     });
 
     // Route for rendering data?
+   
 
     return router;
 };
