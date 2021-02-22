@@ -6,6 +6,7 @@ import request from 'request';
  * Address = uri
  * callback = is a function that returns the data
  */
+
 const data = (callback) => {
     // Api URL
     const url = constants.covidData.BASE_URL;
@@ -21,10 +22,9 @@ const data = (callback) => {
             err
                 ? callback('Error fetch data', undefined)
                 : callback(undefined, {
-                    newConfirmed: body.Global.NewConfirmed,
-                    totalConfirmed: body.Global.TotalConfirmed,
-                    totalDeaths: body.Global.TotalDeaths,
-                    countryInfo: body.Countries
+                    totalConfirmed: body.latest.confirmed,
+                    totalDeaths: body.latest.deaths,
+                    countryInfo: body.locations
                 });
         }
     );

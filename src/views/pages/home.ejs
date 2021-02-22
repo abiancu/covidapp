@@ -28,18 +28,18 @@
                 <thead>
                     <tr>
                         <th scope="col">Country</th>
-                        <th scope="col">New Cases</th>
-                        <th scope="col">Total Cases</th>
-                        <th scope="col">Total Deaths</th>
+                        <th scope="col">Population</th>
+                        <th scope="col">Confirmed Cases</th>
+                        <th scope="col">Totals Deaths</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% countries.forEach((d) => { %>
                         <tr>
-                            <th scope="row"><%= d.Country %></th>
-                            <td><%= d.NewConfirmed %></td>
-                            <td><%= d.TotalConfirmed %></td>
-                            <td><%= d.TotalDeaths %></td>
+                            <th scope="row"><%= d.country %></th>
+                            <td><%= d.country_population %></td>
+                            <td><%= d.latest.confirmed %></td>
+                            <td><%= d.latest.deaths %></td>
                         </tr>
                         <% }); %>
                 </tbody>
@@ -47,6 +47,5 @@
         </main>
         <!-- Footer -->
         <%- include ('../partials/footer') %>
-        <script src="/dist/app.bundle.js"></script>
     </body>
 </html>
