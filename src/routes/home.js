@@ -47,7 +47,8 @@ module.exports = () => {
                         totalConfirmed,
                         totalDeaths,
                         countries: loadData.countries,
-                        pages: loadData.pages
+                        pages: loadData.pages,
+                        current: dataSet.page
                     });
                 }
             );
