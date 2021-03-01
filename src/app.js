@@ -3,9 +3,23 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 
+
+const route = require('./routes/home');
+
+// Livereload
+const livereload = require('livereload');
+const liveReloader = livereload.createServer();
+liveReloader.watch(path.join(__dirname, './views'));
+const connectLivereload = require('connect-livereload');
+
+liveReloader.server.once('connection', () => {
+    setTimeout(() => {
+        liveReloader.refresh('/');
+    }, 100);
+});
+
 // Using express express engine
 const app = express();
-const route = require('./routes/home');
 
 // Port number
 const PORT = process.env.POR || 8080;
@@ -17,6 +31,7 @@ app.use(
     })
 );
 app.use(bodyParser.json());
+
 
 // View engine
 app.set('view engine', 'ejs');
@@ -36,3 +51,5 @@ app.use(route());
 
 // Listening
 app.listen(PORT, console.log(`Running on port: ${PORT}`));
+app.use(connectLivereload);
+
