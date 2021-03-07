@@ -6,18 +6,6 @@ import bodyParser from 'body-parser';
 
 const route = require('./routes/home');
 
-// Livereload
-const livereload = require('livereload');
-const liveReloader = livereload.createServer();
-liveReloader.watch(path.join(__dirname, './views'));
-const connectLivereload = require('connect-livereload');
-
-liveReloader.server.once('connection', () => {
-    setTimeout(() => {
-        liveReloader.refresh('/');
-    }, 100);
-});
-
 // Using express express engine
 const app = express();
 
@@ -51,5 +39,4 @@ app.use(route());
 
 // Listening
 app.listen(PORT, console.log(`Running on port: ${PORT}`));
-app.use(connectLivereload);
 
