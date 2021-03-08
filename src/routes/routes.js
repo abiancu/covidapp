@@ -27,7 +27,9 @@ module.exports = () => {
                     if (err) {
                         return res.send(err);
                     } else {
-                        return res.send('<h1>Home page</h1>');
+                        return res.render('index',{
+                            pageTitle: app.locals.pageTitle
+                        });
                     }
                 }
             );

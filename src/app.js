@@ -4,7 +4,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 
 
-const route = require('./routes/home');
+const route = require('./routes/routes');
 
 // Using express express engine
 const app = express();
@@ -27,8 +27,9 @@ app.set('views', path.join(__dirname, './views/pages'));
 
 // Locals
 app.locals.pageTitle = 'COVID19-HOME';
-app.locals.covidGlobal = 'COVID-19 Global Cases';
+app.locals.covidGlobal = 'COVID-19';
 app.locals.footerContent = '© 2020 Copyright: Biancucci\'s Designed';
+app.locals.pageTitleGlobalCases = 'Global Cases';
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '/static')));
