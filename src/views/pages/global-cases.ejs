@@ -49,18 +49,22 @@
                 <thead>
                     <tr>
                         <th scope="col">Country</th>
+                        <th scope="col">province</th>
                         <th scope="col">Population</th>
                         <th scope="col">Confirmed Cases</th>
                         <th scope="col">Totals Deaths</th>
+                        <th scope="col">Last Updated</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% countries.forEach((d) => { %>
                         <tr>
-                            <th scope="row"><%= d.country %></th>
-                            <td><%= d.country_population %></td>
-                            <td><%= d.latest.confirmed %></td>
-                            <td><%= d.latest.deaths %></td>
+                            <td scope="row"><%= d.country %></th>
+                            <td scope="row"><%= d.province %></td>    
+                            <td scope="row"><%= d.country_population %></td>
+                            <td scope="row"><%= d.latest.confirmed %></td>
+                            <td scope="row"><%= d.latest.deaths %></td>
+                            <td scope="row"><%= d.last_updated %></td>
                         </tr>
                         <% }); %>
                 </tbody>
