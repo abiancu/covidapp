@@ -1,38 +1,42 @@
 import express from 'express';
+import constants from '../api-config';
+import request from 'request';
 
 // Home route
-const data = require('../utils/covid-data');
+// const data = require('../utils/covid-data');
 const router = express.Router();
 const app = express();
 
 module.exports = () => {
     // Global variables    
-    app.locals._totalconfirmed = '';
-    app.locals._totalDeaths = '';
-    app.locals._countryInfo = '';
+    app.locals._totalconfirmed = 0;
+    app.locals._totalDeaths = 0;
+    app.locals._countryInfo = null;
     // Home route
     router.get('/', (req, res, next) => {
         try {
-            data(
-                (err, {
-                    totalConfirmed,
-                    totalDeaths,
-                    countryInfo
-                }) => {
-                    app.locals._totalconfirmed = totalConfirmed;
-                    app.locals._totalDeaths = totalDeaths;
-                    app.locals._countryInfo = countryInfo;
+            var url = constants;
+            request(url, function (error, response, body) {
+                if(response.statusCode !== 200) {
+                    console.log(error);
+                } else {
+                    // make sure the data is JSON      
+                    var jsonData = JSON.parse(body);
+                    var countries = jsonData.response;
                     
-                    // // Check for errors
-                    if (err) {
-                        return res.send(err);
-                    } else {
-                        return res.render('index',{
-                            pageTitle: app.locals.pageTitle
-                        });
-                    }
+                    app.locals._countryInfo = countries;
+                    countries.forEach(c => {
+                        app.locals._totalconfirmed = app.locals._totalconfirmed + c.cases.total;
+                        app.locals._totalDeaths = app.locals._totalDeaths + c.deaths.total;
+                    });
+
+                    // TODO: fix app.local variable. It holds the value so every refresh increments the counter -- inaccurate total caounts
                 }
-            );
+            });
+
+            return res.render('index', {
+                pageTitle: app.locals.pageTitle
+            });
         } catch (error) {
             return next(error);
         }
@@ -40,6 +44,8 @@ module.exports = () => {
 
     // Global Route
     router.get('/global-cases', (req, res) => {
+
+        console.log(app.locals._countryInfo);
         // Pagination
         let dataSet = {
             countries: app.locals._countryInfo,

@@ -1,10 +1,10 @@
 const constants = {
-    covidData: {
-        METHOD: 'GET',
-        BASE_URL: 'https://coronavirus-tracker-api.herokuapp.com/v2/locations',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+    method: 'GET',
+    url: 'https://covid-193.p.rapidapi.com/statistics',
+    headers: {
+        'x-rapidapi-key': '14aadf98bcmsh669b27c9c93fedap1729e0jsndff0e502248d',
+        'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+        'content-type': 'application/json'
     }
 };
 
