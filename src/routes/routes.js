@@ -36,8 +36,7 @@ module.exports = () => {
                         res.locals._totalconfirmed = res.locals._totalconfirmed + c.cases.total;
                         res.locals._totalDeaths = res.locals._totalDeaths + c.deaths.total;
                     });
-
-                    // TODO: fix app.local variable. Replace with res.local
+                   
                     // Pass total count of deaths and cases to other route using a middleware that takes an array
                     middleware = [res.locals._totalconfirmed, res.locals._totalDeaths];
                 }
@@ -54,7 +53,6 @@ module.exports = () => {
 
     // Global Route
     router.get('/global-cases', middleware, (req, res) => {
-        console.log(middleware[0]);
         // Pagination
         let dataSet = {
             countries: app.locals._countryInfo,
