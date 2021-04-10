@@ -1,45 +1,58 @@
 import express from 'express';
+import constants from '../api-config';
+import request from 'request';
 
 // Home route
-const data = require('../utils/covid-data');
+// const data = require('../utils/covid-data');
 const router = express.Router();
 const app = express();
 
 module.exports = () => {
-    // Global variables    
-    app.locals._totalconfirmed = '';
-    app.locals._totalDeaths = '';
-    app.locals._countryInfo = '';
+    // Global variables
+    app.locals._countryInfo = null;
+
+    // Middleware
+    let middleware = (req, res, next) => {
+        req.tc = null;
+        req.td = null;
+        next();
+    };
     // Home route
     router.get('/', (req, res, next) => {
+        res.locals._totalconfirmed = 0;
+        res.locals._totalDeaths = 0;
         try {
-            data(
-                (err, {
-                    totalConfirmed,
-                    totalDeaths,
-                    countryInfo
-                }) => {
-                    app.locals._totalconfirmed = totalConfirmed;
-                    app.locals._totalDeaths = totalDeaths;
-                    app.locals._countryInfo = countryInfo;
+            var url = constants;
+            request(url, function (error, response, body) {
+                if(response.statusCode !== 200) {
+                    console.log(error);
+                } else {
+                    // make sure the data is JSON      
+                    var jsonData = JSON.parse(body);
+                    var countries = jsonData.response;
                     
-                    // // Check for errors
-                    if (err) {
-                        return res.send(err);
-                    } else {
-                        return res.render('index',{
-                            pageTitle: app.locals.pageTitle
-                        });
-                    }
+                    app.locals._countryInfo = countries;
+                    countries.forEach(c => {
+                        res.locals._totalconfirmed = res.locals._totalconfirmed + c.cases.total;
+                        res.locals._totalDeaths = res.locals._totalDeaths + c.deaths.total;
+                    });
+                   
+                    // Pass total count of deaths and cases to other route using a middleware that takes an array
+                    middleware = [res.locals._totalconfirmed, res.locals._totalDeaths];
                 }
-            );
+            });
+           
+            
+            return res.render('index', {
+                pageTitle: app.locals.pageTitle
+            });
         } catch (error) {
             return next(error);
         }
     });
 
     // Global Route
-    router.get('/global-cases', (req, res) => {
+    router.get('/global-cases', middleware, (req, res) => {
         // Pagination
         let dataSet = {
             countries: app.locals._countryInfo,
@@ -63,11 +76,11 @@ module.exports = () => {
 
         let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
         
-      
+        
         return res.render('global-cases', {
             pageTitle: 'COVID-19 Global Cases',
-            totalConfirmed: app.locals._totalconfirmed,
-            totalDeaths: app.locals._totalDeaths,
+            totalConfirmed: middleware[0],
+            totalDeaths: middleware[1],
             countries: loadData.countries,
             pages: loadData.pages,
             current: dataSet.page
