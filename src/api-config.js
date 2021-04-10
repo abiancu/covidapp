@@ -1,9 +1,11 @@
+import secrets from '../secrets';
+
 const constants = {
     method: 'GET',
-    url: 'https://covid-193.p.rapidapi.com/statistics',
+    url: secrets.url,
     headers: {
-        'x-rapidapi-key': '14aadf98bcmsh669b27c9c93fedap1729e0jsndff0e502248d',
-        'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+        'x-rapidapi-key': secrets.API_KEY,
+        'x-rapidapi-host': secrets.HOST_KEY,
         'content-type': 'application/json'
     }
 };
