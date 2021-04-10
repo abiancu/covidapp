@@ -8,12 +8,19 @@ const router = express.Router();
 const app = express();
 
 module.exports = () => {
-    // Global variables    
-    app.locals._totalconfirmed = 0;
-    app.locals._totalDeaths = 0;
+    // Global variables
     app.locals._countryInfo = null;
+
+    // Middleware
+    let middleware = (req, res, next) => {
+        req.tc = null;
+        req.td = null;
+        next();
+    };
     // Home route
     router.get('/', (req, res, next) => {
+        res.locals._totalconfirmed = 0;
+        res.locals._totalDeaths = 0;
         try {
             var url = constants;
             request(url, function (error, response, body) {
@@ -26,14 +33,17 @@ module.exports = () => {
                     
                     app.locals._countryInfo = countries;
                     countries.forEach(c => {
-                        app.locals._totalconfirmed = app.locals._totalconfirmed + c.cases.total;
-                        app.locals._totalDeaths = app.locals._totalDeaths + c.deaths.total;
+                        res.locals._totalconfirmed = res.locals._totalconfirmed + c.cases.total;
+                        res.locals._totalDeaths = res.locals._totalDeaths + c.deaths.total;
                     });
 
-                    // TODO: fix app.local variable. It holds the value so every refresh increments the counter -- inaccurate total caounts
+                    // TODO: fix app.local variable. Replace with res.local
+                    // Pass total count of deaths and cases to other route using a middleware that takes an array
+                    middleware = [res.locals._totalconfirmed, res.locals._totalDeaths];
                 }
             });
-
+           
+            
             return res.render('index', {
                 pageTitle: app.locals.pageTitle
             });
@@ -43,9 +53,8 @@ module.exports = () => {
     });
 
     // Global Route
-    router.get('/global-cases', (req, res) => {
-
-        console.log(app.locals._countryInfo);
+    router.get('/global-cases', middleware, (req, res) => {
+        console.log(middleware[0]);
         // Pagination
         let dataSet = {
             countries: app.locals._countryInfo,
@@ -69,11 +78,11 @@ module.exports = () => {
 
         let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
         
-      
+        
         return res.render('global-cases', {
             pageTitle: 'COVID-19 Global Cases',
-            totalConfirmed: app.locals._totalconfirmed,
-            totalDeaths: app.locals._totalDeaths,
+            totalConfirmed: middleware[0],
+            totalDeaths: middleware[1],
             countries: loadData.countries,
             pages: loadData.pages,
             current: dataSet.page
