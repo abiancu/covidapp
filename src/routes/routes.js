@@ -24,8 +24,8 @@ module.exports = () => {
         try {
             var url = constants;
             request(url, function (error, response, body) {
-                if(response.statusCode !== 200) {
-                    console.log(error);
+                if(error) {
+                    throw new Error('SOMETHING WRONG WITH API');
                 } else {
                     // make sure the data is JSON      
                     var jsonData = JSON.parse(body);
