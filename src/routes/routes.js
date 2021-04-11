@@ -52,39 +52,43 @@ module.exports = () => {
     });
 
     // Global Route
-    router.get('/global-cases', middleware, (req, res) => {
-        // Pagination
-        let dataSet = {
-            countries: app.locals._countryInfo,
-            page: req.query ? (req.query.page ? req.query.page : 1) : 1,
-            rows: 20
-        };
-
-        let pagination = (countries, page, rows) => {
-            var startIndex = (page - 1) * rows;
-            var endIndex = startIndex + rows;
-
-            var restuls = app.locals._countryInfo.slice(startIndex, endIndex);
-
-            var pages = Math.ceil(countries.length / rows);
-
-            return {
-                countries: restuls,
-                pages: pages
+    router.get('/global-cases', middleware, (req, res, next) => {
+        try {
+            // Pagination
+            let dataSet = {
+                countries: app.locals._countryInfo,
+                page: req.query ? (req.query.page ? req.query.page : 1) : 1,
+                rows: 20
             };
-        };
 
-        let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
+            let pagination = (countries, page, rows) => {
+                var startIndex = (page - 1) * rows;
+                var endIndex = startIndex + rows;
+
+                var restuls = app.locals._countryInfo.slice(startIndex, endIndex);
+
+                var pages = Math.ceil(countries.length / rows);
+
+                return {
+                    countries: restuls,
+                    pages: pages
+                };
+            };
+
+            let loadData = pagination(dataSet.countries, dataSet.page, dataSet.rows);
         
         
-        return res.render('global-cases', {
-            pageTitle: 'COVID-19 Global Cases',
-            totalConfirmed: middleware[0],
-            totalDeaths: middleware[1],
-            countries: loadData.countries,
-            pages: loadData.pages,
-            current: dataSet.page
-        });
+            return res.render('global-cases', {
+                pageTitle: 'COVID-19 Global Cases',
+                totalConfirmed: middleware[0],
+                totalDeaths: middleware[1],
+                countries: loadData.countries,
+                pages: loadData.pages,
+                current: dataSet.page
+            });
+        } catch (error) {
+            return next(error);
+        }
     });
    
 
