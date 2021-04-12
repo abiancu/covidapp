@@ -112,3 +112,6 @@ dist/
 
 # Secret keys
 secrets.js
+
+# Local Netlify folder
+.netlify
