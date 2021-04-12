@@ -4,8 +4,8 @@
   "description": "simple COVID19 tracker application",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js --exec babel-node -e js, ejs && livereload",
-    "build": "netlify build"
+    "start": "nodemon server.js --exec babel-node -e js, ejs && livereload"
+   
   },
   "repository": {
     "type": "git",
