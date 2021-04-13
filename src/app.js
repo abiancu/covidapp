@@ -3,8 +3,8 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 
-
-const route = require('./src/routes/routes');
+const serverless = require('serverless-http');
+const route = require('./routes/routes');
 
 // Using express express engine
 const app = express();
@@ -33,8 +33,8 @@ app.use(express.static(path.join(__dirname, './src/static')));
 app.use(express.static(path.join(__dirname, './src/static/img')));
 
 // Home page
-app.use(route());
+app.use('/.netlify/functions/app',route());
 
 
-module.exports = app;
+module.exports.handler = serverless(app);
 

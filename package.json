@@ -4,8 +4,8 @@
   "description": "simple COVID19 tracker application",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js --exec babel-node -e js, ejs && livereload"
-   
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,10 @@
     "ejs": "^3.1.5",
     "ejs-loader": "^0.5.0",
     "express": "^4.17.1",
+    "netlify-lambda": "^2.0.3",
     "nodemon": "^2.0.6",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "serverless-http": "^2.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",

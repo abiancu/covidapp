@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 /* eslint-disable no-console */
 
 /**
@@ -6,7 +6,7 @@
  */
 
 var app = require('./app');
-var debug = require('debug')('express-generator:server');
+var debug = require('debug')('COVID19-Tracker:server');
 var http = require('http');
  
 /**
