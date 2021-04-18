@@ -1,6 +1,6 @@
-import express from 'express';
-import constants from '../api-config';
-import request from 'request';
+const express = require('express');
+const constants = require('../api-config');
+const request = require('request');
 
 // Home route
 // const data = require('../utils/covid-data');

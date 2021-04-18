@@ -1,4 +1,4 @@
-import secrets from '../secrets';
+const secrets = require('../secrets');
 
 const constants = {
     method: 'GET',
@@ -10,4 +10,4 @@ const constants = {
     }
 };
 
-export default constants;
+module.exports = constants;
