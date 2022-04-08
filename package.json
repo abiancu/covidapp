@@ -25,6 +25,7 @@
     "@babel/polyfill": "^7.12.1",
     "aws-sdk": "^2.888.0",
     "bootstrap": "^4.5.3",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.5",
     "ejs-loader": "^0.5.0",
     "express": "^4.17.1",

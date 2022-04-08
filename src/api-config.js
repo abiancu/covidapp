@@ -1,11 +1,12 @@
-const secrets = require('../secrets');
+// read from (dotenv) file
+require('dotenv').config();
 
 const constants = {
     method: 'GET',
-    url: secrets.url,
+    url: process.env.APPURL,
     headers: {
-        'x-rapidapi-key': secrets.API_KEY,
-        'x-rapidapi-host': secrets.HOST_KEY,
+        'x-rapidapi-key': process.env.APIKEY,
+        'x-rapidapi-host': process.env.APPHOSTKEY,
         'content-type': 'application/json'
     }
 };
