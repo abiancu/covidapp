@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./../../static/css/style.css"/>
-    <title><%= pageTitle %> </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./../../static/css/style.css" />
+    <title>
+        <%= pageTitle %>
+    </title>
 </head>
+
 <body>
-     <!-- Navigation -->
-     <%- include ('../partials/navigation') %>
-     <main>       
-        <div class="button-area">        
-            <form action="/global-cases" method="get">
-                <button class="btn btn-primary" type="submit">Global Cases</button>
-            </form> 
-        </div>
-     </main>
-    <!-- Footer -->
-    <%- include ('../partials/footer') %>
+    <div class="page-container">
+        <%- include ('../partials/navigation') %>
+            <div class="main-content">
+                <main role="main" class="container">
+                    <div class="button-area">
+                        <form action="/global-cases" method="get">
+                            <button class="btn btn-primary" type="submit">Global Cases</button>
+                        </form>
+                    </div>
+                </main>
+            </div>
+            <%- include ('../partials/footer') %>
+    </div>
 </body>
+
 </html>

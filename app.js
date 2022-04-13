@@ -31,7 +31,6 @@ app.locals.pageTitleGlobalCases = 'Global Cases';
 
 // Serve static files
 app.use(express.static(path.join(__dirname, './src/static')));
-app.use(express.static(path.join(__dirname, './src/static/img')));
 
 // Home page
 app.use(route());
