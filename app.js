@@ -16,6 +16,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// Serve static files
+app.use(express.static(path.join(__dirname, 'src/static/')));
+app.use(express.static(path.join(__dirname, './src/static/img')));
+
 
 // View engine
 app.set('view engine', 'ejs');
@@ -26,11 +30,9 @@ const date = new Date();
 let year = date.getFullYear();
 app.locals.pageTitle = 'COVID19-HOME';
 app.locals.covidGlobal = 'COVID-19';
-app.locals.footerContent = `© ${year} Copyright: Biancucci's Design`;
+app.locals.footerContent = `© ${year} Copyright: Biancucci`;
 app.locals.pageTitleGlobalCases = 'Global Cases';
 
-// Serve static files
-app.use(express.static(path.join(__dirname, './src/static')));
 
 // Home page
 app.use(route());

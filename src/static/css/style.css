@@ -1,8 +1,19 @@
-html {}
-
 body {
     min-height: 100vh;
     margin: 0 auto;
+   
+
+}
+
+#main {
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 3em;
+}
+
+#img {
+    max-width: 42%;
+    height: 41px;
 }
 
 #footer {
@@ -12,11 +23,14 @@ body {
     height: 2.5rem;
 }
 
-.page-container{
+.row{
+    height: 100%;
+}
+.page-container {
     min-height: 100vh;
     margin: 0 auto;
 }
 
-.main-content{
+.main-content {
     padding-bottom: 2.5rem;
 }

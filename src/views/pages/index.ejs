@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./../../static/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>
         <%= pageTitle %>
     </title>
@@ -16,16 +16,14 @@
 <body>
     <div class="page-container">
         <%- include ('../partials/navigation') %>
-            <div class="main-content">
-                <main role="main" class="container">
-                    <div class="button-area">
-                        <form action="/global-cases" method="get">
-                            <button class="btn btn-primary" type="submit">Global Cases</button>
-                        </form>
-                    </div>
-                </main>
+         <div id="main" class="container">
+            <div class="row align-items-center">
+                <form action="/global-cases" method="get">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Global Cases</button>
+                </form>
             </div>
-            <%- include ('../partials/footer') %>
+         </div>    
+        <%- include ('../partials/footer') %>
     </div>
 </body>
 
