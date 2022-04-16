@@ -6,14 +6,21 @@ body {
 }
 
 #main {
-    height: 400px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    margin-top: 3em;
+    padding-bottom: 2.5rem;
 }
 
 #img {
     max-width: 42%;
     height: 41px;
+}
+
+#in-box{
+    height: 100%;
+}
+#main-box{
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 3em;
 }
 
 #footer {
@@ -23,14 +30,3 @@ body {
     height: 2.5rem;
 }
 
-.row{
-    height: 100%;
-}
-.page-container {
-    min-height: 100vh;
-    margin: 0 auto;
-}
-
-.main-content {
-    padding-bottom: 2.5rem;
-}
