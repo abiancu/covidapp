@@ -20,7 +20,8 @@ variables:
   # Agent VM image name
   pool:   
     name: 'LinuxAgent'
-    demands: Agent.name -equals racknerdLinuxAgent2
+    demands: 
+    - Agent.Name -equals racknerdLinuxAgent2
 
 stages:
 - stage: Build
