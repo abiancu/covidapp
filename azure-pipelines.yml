@@ -17,10 +17,10 @@ variables:
   environmentName: 'covidtracker3592'
 
   # Agent VM image name
-pool:
-  name: LinuxAgent
-  demands:
-  - Agent.Name -equals racknerdLinuxAgent
+  vmImageName: racknerdLinuxAgent2
+  
+  # Agent pool
+  agentPool: LinuxAgent
 
 stages:
 - stage: Build
@@ -29,6 +29,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
+      name: agentPool
       vmImage: $(vmImageName)
 
     steps:
