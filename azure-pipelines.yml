@@ -17,9 +17,11 @@ variables:
   environmentName: 'covidtracker3592'
 
   # Agent VM image name
-  pool: LinuxAgent
+pool:
+  name: LinuxAgent
   demands:
-    - Agent.Name -equals racknerdLinuxAgent2
+  - myCustomCapability   # exists check for myCustomCapability
+  - Agent.Version -equals 2.144.0 # equals check for Agent.Version 2.144.0
 
 stages:
 - stage: Build
