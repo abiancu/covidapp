@@ -18,9 +18,7 @@ variables:
 
   # Agent VM image name
   vmImageName: racknerdLinuxAgent2
-  
-  # Agent pool
-  agentPool: LinuxAgent
+
 
 stages:
 - stage: Build
@@ -29,7 +27,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      name: agentPool
+      name: LinuxAgent
       vmImage: $(vmImageName)
 
     steps:
