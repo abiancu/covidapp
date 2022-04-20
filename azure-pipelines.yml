@@ -20,8 +20,7 @@ variables:
 pool:
   name: LinuxAgent
   demands:
-  - myCustomCapability   # exists check for myCustomCapability
-  - Agent.Version -equals 2.144.0 # equals check for Agent.Version 2.144.0
+  - Agent.Name -equals racknerdLinuxAgent
 
 stages:
 - stage: Build
