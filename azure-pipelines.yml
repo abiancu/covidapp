@@ -18,8 +18,7 @@ variables:
   environmentName: 'covidtracker3592'
 
   # Agent VM image name
-  pool:
-    name: LinuxAgent
+  pool:   
     vmImageName: 'racknerdLinuxAgent2'
 
 stages:
