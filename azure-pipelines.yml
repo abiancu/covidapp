@@ -18,7 +18,9 @@ variables:
   environmentName: 'covidtracker3592'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  pool:
+    name: LinuxAgent
+    vmImageName: 'racknerdLinuxAgent2'
 
 stages:
 - stage: Build
