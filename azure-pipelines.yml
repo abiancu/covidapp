@@ -19,7 +19,7 @@ variables:
 
   # Agent VM image name
   pool:   
-    name: 'LinuxAgent'
+    name: LinuxAgent
     demands: 
     - Agent.Name -equals racknerdLinuxAgent2
 
