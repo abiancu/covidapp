@@ -3,8 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- main
+trigger: none
 
 variables:
 
@@ -18,7 +17,7 @@ variables:
   environmentName: 'covidtracker3592'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: racknerdLinuxAgent2
 
 stages:
 - stage: Build
@@ -27,6 +26,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
+      name: LinuxAgent
       vmImage: $(vmImageName)
 
     steps:
@@ -57,7 +57,7 @@ stages:
   displayName: Deploy stage
   dependsOn: Build
   condition: succeeded()
-  jobs:
+- jobs:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
