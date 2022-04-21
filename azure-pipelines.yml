@@ -62,7 +62,8 @@ stages:
     displayName: Deploy
     environment: $(environmentName)
     pool:
-      vmImage: $(vmImageName)
+     name: LinuxAgent
+     vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
