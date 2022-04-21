@@ -19,7 +19,6 @@ variables:
   # Agent VM image name
   vmImageName: racknerdLinuxAgent2
 
-
 stages:
 - stage: Build
   displayName: Build stage
