@@ -27,7 +27,8 @@ stages:
     displayName: Build
     pool:
       name: LinuxAgent
-      vmImage: $(vmImageName)
+      demands:
+      - Agent.Name -equals $(vmImageName)
 
     steps:
     - task: NodeTool@0
