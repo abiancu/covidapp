@@ -10,6 +10,7 @@ trigger: none
 variables:  
   webAppName: 'web-bicep'
   agentName: racknerdLinuxAgent
+  location: $(Location)
 
 stages:
   - stage: 
@@ -30,7 +31,7 @@ stages:
             scriptLocation: inlineScript
             inlineScript: |
               az group create --name $(Build.BuildNumber) \
-              az deployment group what-if --resource-group $(resourceGroupName) \
+              az deployment group what-if --resource-group $(resourceGroupName) --location $(location)\
               --template-file deployment/template.bicep
               --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
 
