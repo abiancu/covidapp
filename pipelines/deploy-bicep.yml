@@ -11,14 +11,13 @@ variables:
   webAppName: 'web-bicep'
   appServicePlan: $(appServicePlan)
   resourceGroupName: $(ResourceGroupName)
-  agentName: racknerdLinuxAgent2
+  agentName: racknerdLinuxAgent
 
 stages:
   - stage: 
     displayName: Preview deployment resource
     jobs:
     - job:
-      displayName: Service connection
       pool:
         name: LinuxAgent
         demands:
