@@ -8,7 +8,7 @@ trigger: none
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '7a1e86ae-3638-482b-ba6d-ba8a51bb99e8'
+  azureSubscription: $(AzSubscription)
 
   # Web app name
   webAppName: 'covidtracker3592'
