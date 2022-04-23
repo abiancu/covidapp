@@ -10,12 +10,12 @@ trigger: none
 variables:  
   webAppName: 'web-bicep'
   appServicePlan: $(appServicePlan)
-  resourceGroupName: $(ResourceGroupName)  
+  resourceGroupName: $(ResourceGroupName)
   agentName: racknerdLinuxAgent2
 
 stages:
-  - stage: Preview deployment resource
-    displayName: AZ Login
+  - stage: 
+    displayName: Preview deployment resource
     jobs:
     - job:
       displayName: Service connection
