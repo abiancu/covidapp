@@ -23,8 +23,7 @@ steps:
     azureSubscription: 'MyAzSubscription'
     scriptType: 'bash'
     scriptLocation: inlineScript
-    inlineScript: |
-      az group create --name $(Build.BuildNumber) \
+    inlineScript: |      
       az deployment group what-if --resource-group $(ResourceGroupName) --location $(Location)\
       --template-file deployment/template.bicep
       --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
