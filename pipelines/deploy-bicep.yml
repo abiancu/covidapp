@@ -1,0 +1,44 @@
+# Deploy resources using bicep
+# I will create
+  # Resource Group
+  # Service Plan
+  # App Service
+  
+
+trigger: none
+
+variables:  
+  webAppName: 'web-bicep'
+  appServicePlan: $(appServicePlan)
+  resourceGroupName: $(ResourceGroupName)  
+  agentName: racknerdLinuxAgent2
+
+stages:
+  - stage: Preview deployment resource
+    displayName: AZ Login
+    jobs:
+    - job:
+      displayName: Service connection
+      pool:
+        name: LinuxAgent
+        demands:
+        - Agent.Name -equals $(agentName)
+
+        steps:
+        - task: AzureCLI@2
+          displayName: Preview bicep
+          inputs:
+            azureSubscription: $(AzResourceGroup)
+            scriptType: 'bash'
+            scriptLocation: inlineScript
+            inlineScript: |
+              az group create --name $(Build.BuildNumber) \
+              az deployment group what-if --resource-group $(resourceGroupName) \
+              --template-file deployment/template.bicep
+              --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
+
+  
+
+
+
+
