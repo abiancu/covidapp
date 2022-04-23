@@ -1,6 +1,6 @@
 param webAppName string = uniqueString(resourceGroup().id)
 param appServicePlan string = '${webAppName}-asp'
-param location string = resourceGroup().id
+param location string = resourceGroup().location
 
 
 

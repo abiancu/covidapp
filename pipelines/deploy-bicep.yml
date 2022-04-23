@@ -10,6 +10,7 @@ trigger: none
 variables:  
   webAppName: 'web-bicep'
   agentName: racknerdLinuxAgent
+  serviceConnectionName: 'MyAzSubscription'
 
 pool:
   name: LinuxAgent
@@ -20,16 +21,12 @@ steps:
 - task: AzureCLI@2
   displayName: Preview bicep
   inputs:
-    azureSubscription: 'MyAzSubscription'
+    azureSubscription: $(serviceConnectionName)
     scriptType: 'bash'
     scriptLocation: inlineScript
-    inlineScript: |      
-      az deployment group what-if --resource-group $(ResourceGroupName) --location $(Location)\
+    inlineScript: |
+      az deployment group create \
+      --name $(Build.BuildNumber) \
+      --resource-group $(ResourceGroupName) \
       --template-file deployment/template.bicep
       --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
-
-  
-
-
-
-
