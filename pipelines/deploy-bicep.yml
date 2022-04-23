@@ -11,28 +11,23 @@ variables:
   webAppName: 'web-bicep'
   agentName: racknerdLinuxAgent
 
-stages:
-  - stage: 
-    displayName: Preview deployment resource
-    jobs:
-    - job:
-      pool:
-        name: LinuxAgent
-        demands:
-        - Agent.Name -equals $(agentName)
+pool:
+  name: LinuxAgent
+  demands:
+  - Agent.Name -equals $(agentName)
 
-        steps:
-        - task: AzureCLI@2
-          displayName: Preview bicep
-          inputs:
-            azureSubscription: 'MyAzSubscription'
-            scriptType: 'bash'
-            scriptLocation: inlineScript
-            inlineScript: |
-              az group create --name $(Build.BuildNumber) \
-              az deployment group what-if --resource-group $(ResourceGroupName) \
-              --template-file deployment/template.bicep
-              --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
+steps:
+- task: AzureCLI@2
+  displayName: Preview bicep
+  inputs:
+    azureSubscription: 'MyAzSubscription'
+    scriptType: 'bash'
+    scriptLocation: inlineScript
+    inlineScript: |
+      az group create --name $(Build.BuildNumber) \
+      az deployment group what-if --resource-group $(ResourceGroupName) \
+      --template-file deployment/template.bicep
+      --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
 
   
 
