@@ -25,12 +25,12 @@ stages:
         - task: AzureCLI@2
           displayName: Preview bicep
           inputs:
-            azureSubscription: $(AzResourceGroup)
+            azureSubscription: 'MyAzSubscription'
             scriptType: 'bash'
             scriptLocation: inlineScript
             inlineScript: |
               az group create --name $(Build.BuildNumber) \
-              az deployment group what-if --resource-group $(resourceGroupName) \
+              az deployment group what-if --resource-group $(ResourceGroupName) \
               --template-file deployment/template.bicep
               --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan)
 
