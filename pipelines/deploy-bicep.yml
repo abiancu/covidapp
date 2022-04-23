@@ -9,8 +9,6 @@ trigger: none
 
 variables:  
   webAppName: 'web-bicep'
-  appServicePlan: $(appServicePlan)
-  resourceGroupName: $(ResourceGroupName)
   agentName: racknerdLinuxAgent
 
 stages:
