@@ -3,10 +3,11 @@ param appServicePlan string = '${webAppName}-asp'
 param location string = resourceGroup().location
 
 
-
+var appServicePlanName = toLower('${webAppName}-${appServicePlan}')
+var websiteName = toLower('${webAppName}')
 
 resource serverfarms_nodejs_app_asp_name_resource 'Microsoft.Web/serverfarms@2021-03-01' = {
-  name: appServicePlan
+  name: appServicePlanName
   location: location
   tags: {
     nodeapp: ''
@@ -36,7 +37,7 @@ resource serverfarms_nodejs_app_asp_name_resource 'Microsoft.Web/serverfarms@202
 
 
 resource sites_covidtracker3592_name_resource 'Microsoft.Web/sites@2021-03-01' = {
-  name: webAppName
+  name: websiteName
   location: location
   tags: {
     nodeapp: ''
