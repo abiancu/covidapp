@@ -27,8 +27,10 @@ steps:
     inlineScript: |
       az group create $(ResourceGroupName) 
       az deployment group create \
-      --name $(Build.BuildNumber) \
-      --location $(Location) \
-      --resource-group $(ResourceGroupName) \
-      --template-file deployment/template.bicep
-      --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
+        --name $(Build.BuildNumber) \
+        --location $(Location) \
+        --resource-group $(ResourceGroupName) \
+        --template-file deployment/template.bicep
+        --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
+
+
