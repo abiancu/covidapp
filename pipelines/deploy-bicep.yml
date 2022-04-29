@@ -29,7 +29,7 @@ steps:
       az deployment group create \
         --name $(Build.BuildNumber) \        
         --resource-group $(ResourceGroupName) \
-        --template-file deployment/template.bicep
+        --template-file deployment/template.bicep \
         --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
 
 
