@@ -25,10 +25,9 @@ steps:
     scriptType: 'bash'
     scriptLocation: inlineScript
     inlineScript: |
-      az group create $(ResourceGroupName) 
+      az group create --name $(ResourceGroupName) --location $(Location)
       az deployment group create \
-      --name $(Build.BuildNumber) \
-      --location $(Location) \
-      --resource-group $(ResourceGroupName) \
-      --template-file deployment/template.bicep
-      --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
+        --name $(Build.BuildNumber) \        
+        --resource-group $(ResourceGroupName) \
+        --template-file deployment/template.bicep \
+        --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
