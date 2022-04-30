@@ -10,7 +10,7 @@ trigger: none
 variables:  
   webAppName: 'web-bicep'
   agentName: racknerdLinuxAgent
-  serviceConnectionName: 'MyAzSubscription'
+  serviceConnectionName: 'MyAzSubscription'  
 
 pool:
   name: LinuxAgent
@@ -26,8 +26,4 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az group create --name $(ResourceGroupName) --location $(Location)
-      az deployment group create \
-        --name $(Build.BuildNumber) \        
-        --resource-group $(ResourceGroupName) \
-        --template-file deployment/template.bicep \
-        --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
+      az deployment group create --resource-group ab-nodejsapp-stg-rg --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) location=$(Location)
