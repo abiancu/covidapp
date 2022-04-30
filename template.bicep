@@ -13,10 +13,10 @@ resource serverfarms_nodejs_app_asp_name_resource 'Microsoft.Web/serverfarms@202
     nodeapp: ''
   }
   sku: {
-    name: 'B1'
-    tier: 'Basic'
+    name: 'F1'
+    tier: 'Free'
     size: 'B1'
-    family: 'B'
+    family: 'F'
     capacity: 1
   }
   kind: 'linux'
