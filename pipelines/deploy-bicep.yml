@@ -26,4 +26,4 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az group create --name $(ResourceGroupName) --location $(Location)
-      az deployment group create --resource-group ab-nodejsapp-stg-rg --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) location=$(Location)
+      az deployment group create --resource-group $(ResourceGroupName) --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) location=$(Location)
