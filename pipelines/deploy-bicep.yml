@@ -9,8 +9,8 @@ trigger: none
 
 variables:  
   webAppName: 'web-bicep'
-  agentName: racknerdLinuxAgent
-  serviceConnectionName: 'MyAzSubscription'  
+  agentName: racknerdAgentLinux
+  serviceConnectionName: MyAzSubscription 
 
 pool:
   name: LinuxAgent
