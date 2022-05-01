@@ -13,7 +13,7 @@ variables:
   serviceConnectionName: MyAzSubscription 
 
 pool:
-  name: LinuxAgent
+  name: LinuxAgentPool
   demands:
   - Agent.Name -equals $(agentName)
 
