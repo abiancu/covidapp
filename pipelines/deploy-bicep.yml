@@ -9,11 +9,11 @@ trigger: none
 
 variables:  
   webAppName: 'web-bicep'
-  agentName: racknerdLinuxAgent
-  serviceConnectionName: 'MyAzSubscription'
+  agentName: racknerdAgentLinux
+  serviceConnectionName: MyAzSubscription 
 
 pool:
-  name: LinuxAgent
+  name: LinuxAgentPool
   demands:
   - Agent.Name -equals $(agentName)
 
@@ -25,12 +25,5 @@ steps:
     scriptType: 'bash'
     scriptLocation: inlineScript
     inlineScript: |
-      az group create $(ResourceGroupName) 
-      az deployment group create \
-        --name $(Build.BuildNumber) \
-        --location $(Location) \
-        --resource-group $(ResourceGroupName) \
-        --template-file deployment/template.bicep
-        --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) 
-
-
+      az group create --name $(ResourceGroupName) --location $(Location)
+      az deployment group create --resource-group $(ResourceGroupName) --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) location=$(Location)
