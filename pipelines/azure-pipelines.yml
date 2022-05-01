@@ -20,12 +20,6 @@ variables:
   # Agent config
   agentName: racknerdAgentLinux
 
-pool:
-  name: LinuxAgentPool
-  demands:
-  - Agent.Name -equals $(agentName)
-  
-
 stages:
 - stage: Build
   displayName: Build stage
@@ -33,8 +27,9 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      name: LinuxAgent
-      vmImage: $(vmImageName)
+       name: LinuxAgentPool
+       demands:
+       - Agent.Name -equals $(agentName)
 
     steps:
     - task: NodeTool@0
