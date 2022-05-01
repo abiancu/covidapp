@@ -23,7 +23,7 @@ variables:
 pool:
   name: LinuxAgentPool
   demands:
-  - Agent.Name -equals $(agentName)  
+  - Agent.Name -equals $(agentName)
   
 
 stages:
