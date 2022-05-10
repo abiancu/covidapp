@@ -7,8 +7,7 @@
 
 trigger: none
 
-variables:  
-  webAppName: 'web-bicep'
+variables:
   agentName: racknerdAgentLinux
   serviceConnectionName: MyAzSubscription 
 
@@ -26,4 +25,4 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az group create --name $(ResourceGroupName) --location $(Location)
-      az deployment group create --resource-group $(ResourceGroupName) --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName) appServicePlan=$(appServicePlan) location=$(Location)
+      az deployment group create --resource-group $(ResourceGroupName) --name $(Build.BuildNumber) --template-file template.bicep --parameters webAppName=$(webAppName)
