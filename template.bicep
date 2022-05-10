@@ -2,8 +2,12 @@ param webAppName string = uniqueString(resourceGroup().id) // Generate unique St
 param sku string = 'F1' // The SKU of App Service Plan
 param linuxFxVersion string = 'node|14-lts' // The runtime stack of web app
 param location string = resourceGroup().location // Location for all resources
+
+
 var appServicePlanName = toLower('${webAppName}-asp')
-var webSiteName = toLower('wapp-${webAppName}')
+var webSiteName = toLower('webapp-${webAppName}')
+
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: appServicePlanName
   location: location
