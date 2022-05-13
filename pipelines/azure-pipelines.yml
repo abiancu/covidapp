@@ -5,20 +5,9 @@
 
 trigger: none
 
-variables:
-
-  # Azure Resource Manager connection created during pipeline creation
-
-  azureSubscription: 'AzResourceGroup'
-
-  # Web app name
-  webAppName: 'covidtracker3592'
-
-  # Environment name
-  environmentName: 'covidtracker3592'
-
-  # Agent config
+variables: 
   agentName: racknerdAgentLinux
+  serviceConnectionName: MyAzSubscription
 
 stages:
 - stage: Build
@@ -52,30 +41,31 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
-# - stage: Deploy
-#   displayName: Deploy stage
-#   dependsOn: Build
-#   condition: succeeded()
-#   jobs:
-#   - deployment: Deploy
-#     displayName: Deploy
-#     environment: $(environmentName)
-#     pool:
-#      name: LinuxAgent
-#      vmImage: $(vmImageName)
-#     strategy:
-#       runOnce:
-#         deploy:
-#           steps:
-#           - task: AzureWebApp@1
-#             displayName: 'Azure Web App Deploy: covidtracker3592'
-#             inputs:
-#               azureSubscription: $(azureSubscription)
-#               appType: webAppLinux
-#               appName: $(webAppName)
-#               runtimeStack: 'NODE|10.10'
-#               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-#               startUpCommand: 'npm run start'
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: $(webAppName)
+    pool:
+       name: LinuxAgentPool
+       demands:
+       - Agent.Name -equals $(agentName)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            displayName: 'Azure Web App Deploy: $(webAppName)'
+            inputs:
+              azureSubscription: $(serviceConnectionName)
+              appType: webAppLinux
+              appName: $(webAppName)
+              runtimeStack: 'NODE|14-lts'
+              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              startUpCommand: 'npm run start'
