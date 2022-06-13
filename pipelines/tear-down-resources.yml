@@ -3,8 +3,6 @@
 
 trigger: none
 
-trigger: none
-
 variables:
   agentName: racknerdAgentLinux
   serviceConnectionName: MyAzSubscription
