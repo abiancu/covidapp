@@ -1,0 +1,25 @@
+# Run the bash script to tear down un used resources in azure
+# Run Bash
+
+triger: none
+
+trigger: none
+
+variables:
+  agentName: racknerdAgentLinux
+  serviceConnectionName: MyAzSubscription
+
+pool:
+  name: LinuxAgentPool
+  demands:
+  - Agent.Name -equals $(agentName)
+
+
+steps:
+- task: Bash@3
+  displayName: Destroy resources
+  inputs:
+    filePath: '$(System.DefaultWorkingDirectory)'
+    arguments: >
+    $(ResourceGroupName)
+    $(webAppName)
