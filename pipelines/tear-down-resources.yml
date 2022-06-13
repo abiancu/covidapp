@@ -1,7 +1,7 @@
 # Run the bash script to tear down un used resources in azure
 # Run Bash
 
-triger: none
+trigger: none
 
 trigger: none
 
