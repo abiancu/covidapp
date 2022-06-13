@@ -17,5 +17,6 @@ steps:
 - task: Bash@3
   displayName: Destroy resources
   inputs:
-    filePath: '$(System.DefaultWorkingDirectory)'
+    targetType: filePath
+    filePath: '$(System.DefaultWorkingDirectory)/pipelines/tear-down-resources.yml'
     arguments: $(ResourceGroupName) $(webAppName)
