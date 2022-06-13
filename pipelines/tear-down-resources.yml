@@ -18,6 +18,4 @@ steps:
   displayName: Destroy resources
   inputs:
     filePath: '$(System.DefaultWorkingDirectory)'
-    arguments: >
-    $(ResourceGroupName)
-    $(webAppName)
+    arguments: $(ResourceGroupName) $(webAppName)
