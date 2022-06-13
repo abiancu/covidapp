@@ -18,5 +18,5 @@ steps:
   displayName: Destroy resources
   inputs:
     targetType: filePath
-    filePath: '$(System.DefaultWorkingDirectory)/pipelines/tear-down-resources.yml'
+    filePath: $(System.DefaultWorkingDirectory)/pipelines/tear-down-resources.yml
     arguments: $(ResourceGroupName) $(webAppName)
