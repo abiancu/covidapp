@@ -40,21 +40,12 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Pipeline.Workspace)'
-        artifactType: 'pipeline'
-        artifactName: 'debug'
-        
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: '$(Pipeline.Workspace)'
-        artifactType: 'pipeline'
-        artifactName: 'release'
     
-    # - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-    #   artifact: drop
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: debug
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: relese
 
   # - stage: Deploy
   #   displayName: Deploy stage
