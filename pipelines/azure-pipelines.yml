@@ -43,9 +43,15 @@ stages:
 
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: '$(Pipeline.Workspace)/dev'
+        targetPath: '$(Pipeline.Workspace)'
         artifactType: 'pipeline'
-        artifactName: 'drop'
+        artifactName: 'debug'
+        
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifactType: 'pipeline'
+        artifactName: 'release'
     
     # - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
     #   artifact: drop
