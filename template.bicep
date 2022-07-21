@@ -6,6 +6,7 @@ param location string = resourceGroup().location // Location for all resources
 
 var appServicePlanName = toLower('${webAppName}-asp')
 var webSiteName = toLower('webapp-${webAppName}')
+var appInsightName = toLower('${webAppName}-ai')
 
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
@@ -18,7 +19,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
     name: sku
   }
   tags:{
-    nodeapp: ''
+    name: 'nodeapp'
   }
   kind: 'linux'
 }
@@ -32,6 +33,15 @@ resource appService 'Microsoft.Web/sites@2020-06-01' = {
     }    
   }
   tags:{
-    nodeapp: ''
+    name: 'nodeapp'
+  }
+}
+
+resource appInsight 'Microsoft.Insights/components@2020-02-02' = {
+  name: appInsightName
+  location: location
+  kind: 'web'
+  tags:{
+    name: 'nodeapp'
   }
 }
