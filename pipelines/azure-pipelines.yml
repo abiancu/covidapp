@@ -40,9 +40,12 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
+    
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: debug
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
+      artifact: relese
 
   # - stage: Deploy
   #   displayName: Deploy stage
