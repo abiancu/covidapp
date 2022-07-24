@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:current-alpine
+FROM node:18
 
 ENV NOVE_ENV=production
 
@@ -11,4 +11,4 @@ COPY . /app/
 RUN npm install
 
 # Command to execute container
-ENTRYPOINT [ "npm", "server.js" ]
+ENTRYPOINT [ "npm", "start" ]
