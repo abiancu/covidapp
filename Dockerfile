@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
 
-FROM node:18
+#Linux base x64
+FROM node:current-alpine
 
 ENV NOVE_ENV=production
 
